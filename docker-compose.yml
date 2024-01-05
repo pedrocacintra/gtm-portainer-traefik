@@ -32,7 +32,7 @@ services:
       - "traefik.http.services.gtm-preview-server.loadbalancer.server.port=8080"
 
     networks:
-      - gtm
+      - your-gtm-network
 
 networks:
   gtm:
