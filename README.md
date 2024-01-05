@@ -5,7 +5,7 @@ Install GTM server container on a VPS with Portainer + Traefik
 1) Create 2 (A) DNS records pointing your VPS IP, one for the main tag server, and the other for the preview server. (Ex: gtm.domain.com and gtm-preview.domain.com)
 2) Create network for the GTM stack
 3) Connect the created network to Traefik's container
-4) Create stack, paste the .yaml code, upload the .env and change to your info (urls and network name)
+4) Create stack, paste the .yaml code, upload the .env and change to your info (urls, container and network name)
 5) Deploy the stack
 
 # # Testing:
