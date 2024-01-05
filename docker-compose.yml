@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  gtm-tag-server:
+    container_name: gtm-tag-server
+    image: 'gcr.io/cloud-tagging-10302018/gtm-cloud-image:stable'
+    environment:
+      - CONTAINER_CONFIG=${CONTAINER_CONFIG}
+      - PREVIEW_SERVER_URL=${PREVIEW_SERVER_URL}
+      - RUN_AS_PREVIEW_SERVER=false
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gtm-tag-server.rule=Host(`your-tag-server-subdomain.domain.com`)"
+      - "traefik.http.routers.gtm-tag-server.entrypoints=websecure"
+      - "traefik.http.routers.gtm-tag-server.tls.certresolver=leresolver"
+      - "traefik.http.services.gtm-tag-server.loadbalancer.server.port=8080"
+
+    networks:
+      - gtm
+
+  gtm-preview-server:
+    container_name: gtm-preview-server
+    image: 'gcr.io/cloud-tagging-10302018/gtm-cloud-image:stable'
+    environment:
+      - CONTAINER_CONFIG=${CONTAINER_CONFIG}
+      - RUN_AS_PREVIEW_SERVER=true
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gtm-preview-server.rule=Host(`your-preview-server-subdomain.domain.com`)"
+      - "traefik.http.routers.gtm-preview-server.entrypoints=websecure"
+      - "traefik.http.routers.gtm-preview-server.tls.certresolver=leresolver"
+      - "traefik.http.services.gtm-preview-server.loadbalancer.server.port=8080"
+
+    networks:
+      - gtm
+
+networks:
+  gtm:
+    external: true
