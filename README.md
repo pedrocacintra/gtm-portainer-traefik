@@ -9,5 +9,5 @@ Install GTM server container on a VPS with Portainer + Traefik
 5) Deploy the stack
 
 # # Testing:
-1) Go both of the urls with a /healthz in the end, (ex: https://gtmpreview.domain.com/healthz and https://gtm.domain.com/healthz). You should see a black page with the text "ok".
+1) Try opening both of the urls with a /healthz in the end, (ex: https://gtmpreview.domain.com/healthz and https://gtm.domain.com/healthz). You should see a black page with the text "ok".
 2) Go to the GTM container and click on preview, this should open the preview screen correctly.
